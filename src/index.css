@@ -1,0 +1,135 @@
+:root {
+  --border-medium: 2px solid;
+  --primary-color: #faf3dd;
+  --secondary-color: #8fc0a9;
+  --tertiary-color: #c8d5b9;
+}
+
+/* resetting default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* general styling */
+body,
+.todo-input-form .todo-input,
+.todo-input-form .add-todo-btn,
+.todo .todo-remove,
+.todo-save {
+  font-family: "Roboto Mono", monospace;
+}
+
+/* main styling */
+body {
+  height: 100vh;
+  background-color: var(--primary-color);
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#todo-list {
+  width: 1024px;
+  padding: 32px 0;
+}
+
+.todo-list-header {
+  background-color: var(--secondary-color);
+  padding: 32px;
+  border: var(--border-medium);
+}
+
+.todo-list-body {
+  padding: 32px;
+  border: var(--border-medium);
+  background-color: var(--tertiary-color);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: none;
+}
+
+.todo-input-form {
+  display: flex;
+  gap: 8px;
+}
+
+.todo-input-form .todo-input {
+  width: 70%;
+  padding: 8px 10px;
+  font-size: 16px;
+  outline: none;
+  border: var(--border-medium);
+}
+
+.todo-input-form .add-todo-btn {
+  width: 30%;
+  border: var(--border-medium);
+  cursor: pointer;
+  background-color: var(--tertiary-color);
+}
+
+.todo {
+  background-color: var(--secondary-color);
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.todo .todo-done {
+  cursor: pointer;
+}
+
+.todo .todo-text {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.todo .todo-remove {
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: var(--primary-color);
+}
+
+.todo-save {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--secondary-color);
+  border: var(--border-medium);
+  padding: 8px 64px;
+  cursor: pointer;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.spacer {
+  height: 70px;
+}
+
+@media screen and (max-width: 1024px) {
+  #todo-list {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .todo-list-header,
+  .todo-list-body {
+    padding: 16px;
+  }
+
+  .todo {
+    padding: 8px;
+  }
+}
