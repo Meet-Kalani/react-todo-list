@@ -4,7 +4,9 @@ function UserInput({ handleAddBtnClick }) {
   const [userInput, setUserInput] = useState("");
 
   const handleInputChange = (e) => {
-    setUserInput(e.target.value);
+    if (e.target.value !== " ") {
+      setUserInput(e.target.value);
+    }
   };
 
   //   was dpoing belowe function

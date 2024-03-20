@@ -1,38 +1,47 @@
+// NOTE: Converted application to use useReducer hook
 import UserInput from "./components/UserInput";
 import Todos from "./components/Todos";
 
-import { useState } from "react";
+import { useReducer } from "react";
 
-function App() {
-  const [todos, setTodos] = useState(
-    JSON.parse(localStorage.getItem("todos")) || []
-  );
-
-  const handleAddBtnClick = (currentTodo) => {
-    const newTodo = {
-      id: crypto.randomUUID(),
-      text: currentTodo,
-      isChecked: false,
-    };
-
-    setTodos([...todos, newTodo]);
-  };
-
-  const handleDoneBtnClick = (id) => {
-    const updatedTodos = todos.map((todo) => {
-      if (todo.id === id) {
+function reducer(todos, action) {
+  if (action.type === "add-todo") {
+    return [
+      ...todos,
+      {
+        id: crypto.randomUUID(),
+        text: action.currentTodo,
+        isChecked: false,
+      },
+    ];
+  } else if (action.type === "done-todo") {
+    return todos.map((todo) => {
+      if (todo.id === action.id) {
         return { ...todo, isChecked: !todo.isChecked };
       }
       return todo;
     });
+  } else if (action.type === "remove-todo") {
+    return todos.filter((todo) => todo !== action.currentTodo);
+  }
+}
 
-    setTodos(updatedTodos);
+function App() {
+  const [todos, dispatch] = useReducer(
+    reducer,
+    JSON.parse(localStorage.getItem("todos")) || []
+  );
+
+  const handleAddBtnClick = (currentTodo) => {
+    dispatch({ type: "add-todo", currentTodo });
+  };
+
+  const handleDoneBtnClick = (id) => {
+    dispatch({ type: "done-todo", id });
   };
 
   const handleRemoveBtnClick = (currentTodo) => {
-    const updatedTodos = todos.filter((todo) => todo !== currentTodo);
-
-    setTodos(updatedTodos);
+    dispatch({ type: "remove-todo", currentTodo });
   };
 
   const handleSaveBtnClick = () => {
