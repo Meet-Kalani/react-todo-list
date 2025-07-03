@@ -16,12 +16,12 @@ function Todo({ todo, handleDoneBtnClick, handleRemoveBtnClick }) {
       <input
         type="checkbox"
         className="todo-done"
-        checked={todo.isChecked}
+        checked={todo.isCompleted}
         onChange={handleChecked}
       />
       <span
         className="todo-text"
-        style={todo.isChecked ? lineThroughStyle : initialStyle}
+        style={todo.isCompleted ? lineThroughStyle : initialStyle}
       >
         {todo.text}
       </span>
