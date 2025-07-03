@@ -1,6 +1,7 @@
 import Todo from "./Todo";
 
 function Todos({ todos, handleDoneBtnClick, handleRemoveBtnClick }) {
+  console.log({ todos });
   return (
     <>
       {todos.map((todo) => {
